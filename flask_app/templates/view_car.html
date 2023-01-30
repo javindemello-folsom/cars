@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/static/css/car_style.css' />
+    <title>CarDealz: View Car</title>
+</head>
+<body>
+    <div class="navbar">
+        <h1><h1>
+        <div class="navbuttons">
+            <a href="/dashboard"><button class="style_button">Dashboard</button></a>
+            <form action="/logout" method="POST">
+                <input class="style_button" id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+    <div class="view_box">
+        <div class="view_title">
+            <h2>${{ car.price }}</h2>
+        </div>
+        <table class="view_table">
+            <tbody>
+                <td><b>Model:</b></td>
+                <td>{{ car.model }}</td>
+            </tbody>
+            <tbody>
+                <td><b>Make:</b></td>
+                <td>{{ car.make }}</td>
+            </tbody>
+            <tbody>
+                <td><b>Year:</b></td>
+                <td>{{ car.year }}</td>
+            </tbody>
+            <tbody>
+                <td><b>Description:</b></td>
+                <td>{{ car.description }}</td>
+            </tbody>
+        </table>
+        {% if user.first_name == session.fname %}
+        <p><b>Seller: </b>You</p>
+        {% else %}
+        <div id="purchase">
+            <p><b>Seller: </b>{{ user.first_name }}</p>
+            <form action="/purchase/{{car.id}}" method="POST">
+                <input class="style_button" type="submit" value="Purchase">
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

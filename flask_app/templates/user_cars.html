@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/static/css/car_style.css' />
+    <title>CarDealz: My Cars</title>
+</head>
+<body>
+    <div class="navbar">
+        <h1>{{ session['fname'] }}'s Cars<h1>
+        <div class="navbuttons">
+            <a href="/dashboard"><button class="style_button">Dashboard</button></a>
+            <form action="/logout" method="POST">
+                <input class="style_button" id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+    <div class="all_cars">
+        <h2><b>Cars Listed</b></h2>
+        <table class="all_table">
+            <tbody class="header">
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Actions</th>
+            </tbody>
+        {% for one_car in listed_cars %}
+            <tbody class="table_data">
+                <td>{{ one_car.make }}</td>
+                <td>{{ one_car.model }}</td>
+                <td>{{ one_car.year }}</td>
+                <td>
+                    <a href="/cars/view/{{ one_car.id }}">view</a>
+                    {% if one_car.user_id == session.user_id %}
+                    | <a href="/cars/edit/{{one_car.id}}">edit</a> |
+                    {% endif %}
+                    {% if one_car.user_id == session.user_id %}
+                    <a href="/cars/delete/{{one_car.id}}">delete</a>
+                    {% endif %}
+                </td>
+            </tbody>
+        {% endfor %}
+        </table>
+    </div>
+    <div class="all_cars">
+        <h2><b>Cars Purchased</b></h2>
+        <table class="all_table">
+            <tbody class="header">
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+            </tbody>
+        {% for one_car in purchased_cars %}
+            <tbody class="table_data">
+                <td>{{ one_car.make }}</td>
+                <td>{{ one_car.model }}</td>
+                <td>{{ one_car.year }}</td>
+            </tbody>
+        {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.navbuttons{
+    display: flex;
+    font-size: 14px;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+form{
+    margin-left: 50px;
+}
+
+.form_entry{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding-bottom: 15px;
+    vertical-align: top;
+}
+
+.form_entry input, .form_entry textarea{
+    border: solid black 2px;
+}
+
+.style_button{
+    width: 100px;
+    border: solid black 2px;
+    box-shadow: 2px 2px;
+}
+
+#logout{
+    width: 60px;
+    height: 22px;
+}
+
+.all_cars{
+    margin-left: 30px;
+}
+
+.all_table {
+    border: solid black 2px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+
+.header {
+    background-color: lightgray;
+}
+
+.all_table th, .all_table td {
+    text-align: center;
+    border-right: solid black 2px;
+    border-bottom: solid lightgray 1px;
+    padding-left:  25px;
+    padding-right:  25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.view_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.view_table td{
+    padding-right: 20px;
+    padding-bottom: 10px;
+    vertical-align: top;
+}
+
+.view_box{
+    border: solid black 2px;
+    width: 400px;
+    position: relative;
+    margin: auto;
+    padding: 10px;
+}
+
+#purchase{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error{
+    color: red;
+    font-size: 10px;
+}
+
+.table_data{
+    padding-bottom: 10px;
+}

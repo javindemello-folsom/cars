@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/static/css/car_style.css' />
+    <title>CarDealz: Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>Welcome to Car Dealz, {{ session['fname'] }}!!!<h1>
+            <div class="navbuttons">
+                <a href="/user/{{ session.user_id }}"><button class="style_button">My Cars</button></a>
+                <form action="/logout" method="POST">
+                    <input class="style_button" id="logout" type="submit" value="Logout">
+                </form>
+            </div>
+        </div>
+        <div class="all_cars">
+            <h2><b>Cars for Sale</b></h2>
+            <table class="all_table">
+                <tbody class="header">
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Seller</th>
+                    <th>Actions</th>
+                </tbody>
+            {% for one_car in all_cars %}
+                <tbody>
+                    <td>{{ one_car.model }}</td>
+                    <td>{{ one_car.year }}</td>
+                    {% if one_car.seller == session.fname %}
+                        <td>You</td>
+                    {% else -%}
+                    <td>{{ one_car.seller }}</td>
+                    {% endif %}
+                    <td>
+                        {% if one_car.sold_to is number %}
+                        SOLD
+                        {% else %}
+                            {% if one_car.user_id == session.user_id %}
+                            <a href="/cars/edit/{{one_car.id}}">edit</a> |
+                            {% endif %}
+                            {% if one_car.user_id == session.user_id %}
+                            <a href="/cars/delete/{{one_car.id}}">delete</a>
+                            {% else %}
+                            <a href="/cars/view/{{ one_car.id }}">view</a>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tbody>
+            {% endfor %}
+            </table>
+            <a href="/cars/new"><button class="style_button">Add A Car</button></a>
+        </div>
+    </div>
+</body>
+</html>

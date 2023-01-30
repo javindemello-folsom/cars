@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/static/css/car_style.css' />
+    <title>CarDealz: Add Car</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>Put Car Up For Sale</h1>
+            <div class="navbuttons">
+                <a href="/dashboard"><button class="style_button">Dashboard</button></a>
+                <form action="/logout" method="POST">
+                <input class="style_button" id="logout" type="submit" value="Logout">
+            </div>
+            </form>
+        </div>
+        <form action="/cars/add" method="POST">
+            {% with errors = get_flashed_messages(category_filter=["car"]) %}
+            {% if errors %}
+                {%- for msg in errors %}
+                    <p class = "error">{{ msg }}</p>
+                {% endfor -%}
+            {% endif %}
+            {% endwith %}
+            <div class="form_entry">
+                <label for="price">Price: </label>
+                <input type="number" name="price">
+            </div>
+            <div class="form_entry">
+                <label for="model">Model: </label>
+                <input type="text" name="model">
+            </div>
+            <div class="form_entry">
+                <label for="make">Make: </label>
+                <input type="text" name="make">
+            </div>
+            <div class="form_entry">
+                <label for="year">Year: </label>
+                <input type="number" name="year">
+            </div>
+            <div class="form_entry">
+                <label for="description">Description: </label>
+            <textarea name="description" rows="3" cols="23"></textarea>
+            </div>
+            <input class="style_button" type="submit" value="Add">
+        </form>
+    </div>
+    
+
+</body>
+</html>

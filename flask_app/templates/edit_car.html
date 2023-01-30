@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/static/css/car_style.css' />
+    <title>CarDealz: Edit Car</title>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Edit {{ car.model }}</h1>
+        <div class="navbuttons">
+            <a href="/dashboard"><button class="style_button">Dashboard</button></a>
+            <form action="/logout" method="POST">
+                <input class="style_button" id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+        </form>
+    </div>
+    <form class="editform" action="/update/{{car.id}}" method="POST">
+        <input type="hidden" name="car_id" value="{{car_id}}">
+        <div class="form_entry">
+            <label for="price">Price:</label>
+            <input type="number" name="price" value ="{{ car.price }}">
+        </div>
+        <div class="form_entry">
+            <label for="model">Model:</label>
+            <input type="text" name="model" value ="{{ car.model }}">
+        </div>
+        <div class="form_entry">
+            <label for="make">Make:</label>
+            <input type="text" name="make" value ="{{ car.make }}">
+        </div>
+        <div class="form_entry">
+            <label for="year">Year:</label>
+            <input type="number" name="year" value ="{{ car.year }}">
+        </div>
+        <div class="form_entry">
+            <label for="description">Description:</label>
+            <textarea name="description" value ="">{{ car.description }}</textarea>
+        </div>
+        <input class="style_button" type="submit" value="Update">
+        {% with errors = get_flashed_messages(category_filter=["car"]) %}
+        {% if errors %}
+            {%- for msg in errors %}
+                <p class = "error">{{ msg }}</p>
+            {% endfor -%}
+        {% endif %}
+        {% endwith %}
+    </form>
+</body>
+</html>
